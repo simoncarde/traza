@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "traza"
+version = "0.1.0"
+description = "An evidence-driven data science platform for analyzing job-market skills, portfolio gaps, and career pathways."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Simón Cárdenas Sánchez" }
+]
+dependencies = [
+    "duckdb>=1.4,<2.0",
+    "polars>=1.35,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4,<9.0",
+    "pytest-cov>=6.2,<7.0",
+    "ruff>=0.14,<0.15",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/traza"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
